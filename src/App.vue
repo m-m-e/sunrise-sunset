@@ -5,7 +5,6 @@
   import ApiService from '@/services/ApiService'
   import './assets/styles/home.scss'
 
-  const size = ref<'default' | 'large' | 'small'>('default')
   const selectedDate = ref(null)
   let sunriseData: Ref<ApiResponse | null> = ref(null)
   let filteredData: Ref<ApiResponse | null> = ref(null)
@@ -63,24 +62,13 @@
 
   <main class="main-content">
     <h1 class="main-heading">Sunrise sunset information</h1>
-    <div class="form_input">
-      <label for="date-picker">Choose a date</label>
-      <el-date-picker
-        v-model="selectedDate"
-        type="date"
-        placeholder="Pick a day"
-        :size="size"
-        id="date-picker"
-      />
-    </div>
 
-    <div class="form_input form_input--checkbox">
-      <input type="checkbox" id="terms-checkbox" name="terms-checkbox" required v-model="termsAccepted">
-      <label for="terms-checkbox">I accept the terms and conditions</label>
-    </div>
-
-    <p v-if="errorMessage.length" class="error">{{ errorMessage }}</p>
-    <button @click="getData" type="submit" class="button--primary">Get results</button>
+    <MainForm
+      v-model:selectedDate="selectedDate"
+      v-model:termsAccepted="termsAccepted"
+      :errorMessage="errorMessage"
+      @submit="getData"
+    />
 
     <div class="form_input">
       <label for="filters">Filter by</label>
