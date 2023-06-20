@@ -1,7 +1,6 @@
 <script setup lang="ts">
   import { ref, watch } from 'vue'
   import type { Ref } from 'vue'
-  import { capitalize, removeUnderscore } from './common/helpers'
   import type { ApiResponse } from './common/models'
   import ApiService from '@/services/ApiService'
   import './assets/styles/home.scss'
@@ -46,11 +45,8 @@
     filteredData.value.results = filteredResults
   }
 
-  const getLabel = (name: string): string => {
-    return removeUnderscore(capitalize(name))
-  }
-
   const formatDate = () => {
+    // @ts-ignore
     return new Date(selectedDate.value).toLocaleDateString()
   }
 
@@ -105,15 +101,12 @@
         <option value="golden_hour">golden hour</option>
       </select>
     </div>
-  
-    <div v-if="filteredData" class="results_container">
-      <h2 class="results_header">Results</h2>
-      <p>Chosen date: {{ formatDate() }}</p>
-      <ul v-for="(result, name, i) in filteredData.results" key="i">
-        <li>{{ `${getLabel(name.toString())}: [${result}]` }}</li>
-        <p></p>
-      </ul>
-    </div>
+
+    <Results
+      v-if="filteredData"
+      :selectedDate="formatDate()"
+      :resultsData="filteredData"
+    />
   </main>
 
   <footer class="footer">

@@ -93,20 +93,6 @@
   color: #fdf3a7;;
 }
 
-.results_container {
-  background-color: #F9F3F0;
-  color: #056365;
-  padding: 2rem;
-
-  ul {
-    padding: 0 1rem;
-  }
-}
-
-.results_header {
-  margin: 0;
-}
-
 @media (min-width: 768px) {
   .main-heading {
     font-size: 2.5rem;
@@ -119,9 +105,5 @@
 
   .form_input {
     width: 350px;
-  }
-
-  .results_container ul {
-    padding: 0 2rem;
   }
 }
