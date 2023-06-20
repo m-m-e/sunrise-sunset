@@ -4,6 +4,7 @@
   import { capitalize, removeUnderscore } from './common/helpers'
   import type { ApiResponse } from './common/models'
   import ApiService from '@/services/ApiService'
+  import './assets/styles/home.scss'
 
   const size = ref<'default' | 'large' | 'small'>('default')
   const selectedDate = ref(null)
@@ -59,76 +60,73 @@
 </script>
 
 <template>
-  <h1>Sunrise Sunset information</h1>
+  <header class="header">
+    <img class="header_icon" src="./assets/img/sunrise.svg" alt="Sunrise logo"/>
+    <img class="header_icon" src="./assets/img/sunset.svg" alt="Sunset logo"/>
+  </header>
 
-  <div>
-    <label for="date-picker">Choose a date</label>
-    <el-date-picker
-      v-model="selectedDate"
-      type="date"
-      placeholder="Pick a day"
-      :size="size"
-      id="date-picker"
-    />
-  </div>
+  <main class="main-content">
+    <h1 class="main-heading">Sunrise sunset information</h1>
+    <div class="form_input">
+      <label for="date-picker">Choose a date</label>
+      <el-date-picker
+        v-model="selectedDate"
+        type="date"
+        placeholder="Pick a day"
+        :size="size"
+        id="date-picker"
+      />
+    </div>
 
-  <div>
-    <input type="checkbox" id="terms-checkbox" name="terms-checkbox" required v-model="termsAccepted">
-    <label for="terms-checkbox">I accept the terms and conditions</label>
-  </div>
+    <div class="form_input form_input--checkbox">
+      <input type="checkbox" id="terms-checkbox" name="terms-checkbox" required v-model="termsAccepted">
+      <label for="terms-checkbox">I accept the terms and conditions</label>
+    </div>
 
-  <p v-if="errorMessage.length">{{ errorMessage }}</p>
-  <button @click="getData" type="submit">Get results</button>
+    <p v-if="errorMessage.length" class="error">{{ errorMessage }}</p>
+    <button @click="getData" type="submit" class="button--primary">Get results</button>
 
-  <div>
-    <label for="filters">Filter by</label>
-    <select v-model="selectedFilter" name="filters" id="filters" :disabled="!sunriseData">
-      <option value="">Filter type</option>
-      <option value="sunrise">sunrise</option>
-      <option value="sunset">sunset</option>
-      <option value="dawn">dawn</option>
-      <option value="dusk">dusk</option>
-      <option value="first_light">first light</option>
-      <option value="last_light">last light</option>
-      <option value="golden_hour">golden hour</option>
-    </select>
-  </div>
+    <div class="form_input">
+      <label for="filters">Filter by</label>
+      <select
+        v-model="selectedFilter"
+        name="filters"
+        id="filters"
+        :disabled="!sunriseData"
+        class="form_input--dropdown"
+      >
+        <option value="">Filter type</option>
+        <option value="sunrise">sunrise</option>
+        <option value="sunset">sunset</option>
+        <option value="dawn">dawn</option>
+        <option value="dusk">dusk</option>
+        <option value="first_light">first light</option>
+        <option value="last_light">last light</option>
+        <option value="golden_hour">golden hour</option>
+      </select>
+    </div>
+  
+    <div v-if="filteredData" class="results_container">
+      <h2 class="results_header">Results</h2>
+      <p>Chosen date: {{ formatDate() }}</p>
+      <ul v-for="(result, name, i) in filteredData.results" key="i">
+        <li>{{ `${getLabel(name.toString())}: [${result}]` }}</li>
+        <p></p>
+      </ul>
+    </div>
+  </main>
 
-  <div v-if="filteredData">
-    <h2>Results</h2>
-    <p>Chosen date: {{ formatDate() }}</p>
-    <ul v-for="(result, name, i) in filteredData.results" key="i">
-      <li>{{ `${getLabel(name.toString())}: [${result}]` }}</li>
-      <p></p>
-    </ul>
-  </div>
-
-  <footer>Powered by SunriseSunset.io</footer>
+  <footer class="footer">
+    <p class="footer_text">
+      Powered by
+        <a
+          href="https://sunrisesunset.io/"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="footer_text--link"
+        >
+          SunriseSunset.io
+        </a>
+    </p>
+  </footer>
 </template>
-
-<style scoped>
-.demo-date-picker {
-  display: flex;
-  width: 100%;
-  padding: 0;
-  flex-wrap: wrap;
-}
-
-.demo-date-picker .block {
-  padding: 30px 0;
-  text-align: center;
-  border-right: solid 1px var(--el-border-color);
-  flex: 1;
-}
-
-.demo-date-picker .block:last-child {
-  border-right: none;
-}
-
-.demo-date-picker .demonstration {
-  display: block;
-  color: var(--el-text-color-secondary);
-  font-size: 14px;
-  margin-bottom: 20px;
-}
-</style>
