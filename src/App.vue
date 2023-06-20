@@ -57,7 +57,6 @@
 <template>
   <header class="header">
     <img class="header_icon" src="./assets/img/sunrise.svg" alt="Sunrise logo"/>
-    <img class="header_icon" src="./assets/img/sunset.svg" alt="Sunset logo"/>
   </header>
 
   <main class="main-content">
@@ -89,13 +88,13 @@
         <option value="golden_hour">golden hour</option>
       </select>
     </div>
-
-    <Results
-      v-if="filteredData"
-      :selectedDate="formatDate()"
-      :resultsData="filteredData"
-    />
   </main>
+
+  <Results
+    v-if="filteredData"
+    :selectedDate="formatDate()"
+    :resultsData="filteredData"
+  />
 
   <footer class="footer">
     <p class="footer_text">
