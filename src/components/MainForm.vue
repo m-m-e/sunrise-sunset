@@ -1,5 +1,7 @@
 <script setup lang="ts">
   import { ref, watchEffect } from 'vue'
+  import '../assets/styles/mainForm.scss'
+
   const size = ref<'default' | 'large' | 'small'>('default')
 
   const props = defineProps({
