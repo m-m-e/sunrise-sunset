@@ -5,6 +5,6 @@ export const capitalize = (string: string) => {
   return capitalizedFirst + rest;
 }
 
-export const removeUnderscore = (string: string) => {
-  return string.replace('_', ' ')
+export const removeUnderscores = (string: string) => {
+  return string.replaceAll('_', ' ')
 }
