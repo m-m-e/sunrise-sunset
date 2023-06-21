@@ -15,6 +15,10 @@ const ApiService = {
     } catch (error) {
       console.error('The following error occurred while fetching the data: ', error)
     }
+    return {
+      results: {},
+      status: '404'
+    };
   }
 }
 

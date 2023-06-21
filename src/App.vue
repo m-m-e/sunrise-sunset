@@ -1,11 +1,12 @@
 <script setup lang="ts">
+  // @ts-nocheck
   import { ref, watch } from 'vue'
   import type { Ref } from 'vue'
   import type { ApiResponse } from './common/models'
   import ApiService from '@/services/ApiService'
   import './assets/styles/home.scss'
 
-  const selectedDate = ref(null)
+  const selectedDate = ref(new Date())
   let sunriseData: Ref<ApiResponse | null> = ref(null)
   let filteredData: Ref<ApiResponse | null> = ref(null)
   let selectedFilter: any = ref(null)
@@ -45,7 +46,6 @@
   }
 
   const formatDate = () => {
-    // @ts-ignore
     return new Date(selectedDate.value).toLocaleDateString()
   }
 

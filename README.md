@@ -1,25 +1,15 @@
 # sunrise-sunset-project
 
-This template should help get you started developing with Vue 3 in Vite.
+## About
 
-## Recommended IDE Setup
+This project contains a single page which allows the user to search [sunrisesunset.io](https://sunrisesunset.io/) for sunrise and sunset data for a given date. 
+* They must choose a date (or use the default, which is set to 'today') and accept the terms and conditions to be able to get the results
+* If they don't tick the checkbox, an error message will show and they will not be able to get the results
+* When they have a date and checkbox completed, the application will call the API and format the results for display
+* The results will be shown in the section below
+* They can be filtered using the dropdown
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
-
-## Type Support for `.vue` Imports in TS
-
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
-
-If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
-
-1. Disable the built-in TypeScript Extension
-    1) Run `Extensions: Show Built-in Extensions` from VSCode's command palette
-    2) Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
-2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+This project was created with the 'vue-create' command.
 
 ## Project Setup
 
@@ -44,3 +34,25 @@ npm run build
 ```sh
 npm run lint
 ```
+
+## Testing
+
+### Unit and Component tests with Vitest
+
+```sh
+npm run test
+```
+
+Basic tests have been added as an example to `helpers.ts` and `ResultsSection.vue`. Ideally, there would be tests added to cover all components as well as automated e2e tests to test the full user journey.
+
+## Styles
+This project has been designed using a mobile-first approach, created with SCSS.
+
+## Possible future improvements
+
+* Add a 'Clear filters' button to make it easier for the user to clear the filters
+* Allow the user to clear the results if they want to
+* Add some kind of data visualization to display the data in a more user-friendly way
+* More comprehensive use of Typescript
+* Continue separating components - e.g. the filters could be moved to a separate component
+* Higher test coverage, using unit, component and e2e tests
