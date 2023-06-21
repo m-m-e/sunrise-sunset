@@ -50,7 +50,7 @@
   }
 
   watch(selectedFilter, () => {
-    if (sunriseData) filterList()
+    if (sunriseData.value) filterList()
   })
 </script>
 
@@ -90,7 +90,7 @@
     </div>
   </main>
 
-  <Results
+  <ResultsSection
     v-if="filteredData"
     :selectedDate="formatDate()"
     :resultsData="filteredData"

@@ -17,7 +17,7 @@
   <div class="results_container">
       <h2 class="results_header">Results</h2>
       <p>Chosen date - {{ selectedDate }}</p>
-      <ul v-for="(result, name, i) in resultsData.results" key="i">
+      <ul v-for="(result, name, i) in resultsData.results" :key="i">
         <li>{{ `${getLabel(name.toString())}: ${result}` }}</li>
         <p></p>
       </ul>
